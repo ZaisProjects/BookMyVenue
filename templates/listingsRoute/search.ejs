@@ -1,0 +1,63 @@
+<% layout('/layouts/boilerplate') %>
+<body>
+    <h2>Search Results: </h2><br>
+        <div class="row g-0">   
+            <% for(let list of rslt) {%>
+         <h4 class=""><b><%= list.title %> </b> </h4>  
+        <div class="card col-12 col-sm-10 col-md-8 col-lg-4 mb-3 show">
+            <img src="<%=list.image%>" class="card-img-top show_img" alt="venue photo">
+            <div class="card-body show_body">
+                <p class="card-text show_text"><b>&#8377;</b><%= list.price.toLocaleString("en-IN") %>/night</p>
+                <p class="card-text show_text"><i class="fa-solid fa-location-dot"></i> <%= list.location%>, <%= list.country %></p>
+                <p class="card-text show_text"><b>Description:</b> </p>
+                <p class="card-text show_text show_desc"><%= list.description %></p>
+            </div>
+            <% if(currentUser && currentUser._id.equals(list.owner._id)) {%>
+            <div class="card-body show_link">
+                <a href="/venue/<%=list.id %>/edit" class="card-link btn">
+                    <button class="btn edit_btn form_btn">Edit Venue</button>
+                </a>
+                <form method="post" action="/venue/<%=list.id %>/delete?_method=DELETE" class="card-link btn">
+                    <button class="btn delete_btn form_btn">Delete</button>
+                </form> 
+            </div> 
+            <% } %>
+        </div>
+    </div>
+    <hr class=" show-hr col-12 col-sm-10 col-md-8 col-lg-4 mb-3">
+    <div class="row review col-12 col-sm-10 col-md-8 col-lg-4 mb-3 mt-3">
+    <h3 class="text-center  mb-4">Leave a Review</h3>
+    <form action="/listings/<%= list._id %>/reviews" method="POST" class="review-form mb-4">
+        <div class="mb-3 review-rating" >
+            <label for="rating" class="form-label">Rating</label>
+            <select name="review[rating]" id="rating" class="form-select" required>
+                <option value="">-- Select Rating --</option>
+                <option value="5">⭐⭐⭐⭐⭐</option>
+                <option value="4">⭐⭐⭐⭐</option>
+                <option value="3">⭐⭐⭐</option>
+                <option value="2">⭐⭐</option>
+                <option value="1">⭐</option>
+            </select>
+        </div>
+        <div class="mb-3 review-desc">
+            <label for="comment" class="form-label">Your Review</label>
+            <textarea name="review[comment]" id="comment" rows="3" class="form-control" placeholder="Share your experience..." required></textarea>
+        </div>
+        <!-- <div class="review-btn">
+            <button type="submit" class="btn form_btn">Submit Review</button>
+        </div> -->
+
+         <button type="submit" class="btn offset-4 form_btn">Submit Review</button>
+        
+    </form>
+
+        <% } %> 
+    </div>
+            
+</body>
+
+
+
+
+
+   

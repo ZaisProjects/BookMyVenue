@@ -1,0 +1,254 @@
+body{
+    font-family: "Kurale", serif !important;
+    padding: 0;
+    margin: 0;
+}
+.row{
+    margin: 0.3rem;
+}
+a{
+    text-decoration: none;
+    color: #222;
+}
+.logo{
+    height: 50px;
+    width: 50px;
+    margin-left: .3rem;
+}
+h2{
+    display: flex;
+    justify-content: center;
+}
+/* navbar */
+
+.nav-item{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.nav-link.active {
+  color: #0d6efd !important; /* Bootstrap primary */
+  font-weight: bold;
+}
+
+.dropdown-menu .dropdown-item:hover {
+  background-color: #e7f1ff;       /* Light primary tint background */
+  color: #095cda !important;       /* Bootstrap primary color */
+}
+.dropdown-menu .dropdown-item {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+/* Hero Section */
+.carousel-item img {
+    height: 95vh;          
+    object-fit: cover;     
+    width: 100%;
+    filter: blur(2px);
+    transition:  ease-in !important;
+}
+.carousel-item{
+  transition:  ease-in !important;
+}
+
+.hero-search-box {
+  z-index: 10;
+}
+
+.search-glassmorphic-box {
+  max-width: 700px;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.category-btn {
+  border-radius: 999px;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  color: #000;
+  background-color: rgba(255, 255, 255, 0.6);
+  border: none;
+  transition: 0.3s;
+}
+
+.category-btn:hover,
+.category-btn.active {
+  background-color: #0d6efd;
+  color: #fff;
+}
+
+
+.category-card {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  height: 300px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+.category-card img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+.category-card:hover {
+  transform: scale(1.07);
+}
+.card-img-overlay {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+  padding: 1rem;
+}
+
+/* Footer */
+footer{
+  background-color: #2e3c6a;
+  
+}
+.footer-anchor{
+  color: #b1b0b0;
+  text-decoration: none;
+}
+footer ul li a:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  color: #fff;
+}
+
+.socials a i {
+  color: #c2c1c1;
+}
+.socials a i:hover {
+  transform: scale(1.1);
+  color: #fff;
+}
+
+
+
+
+/* Index Route */
+.cards{
+    padding: 0 0.4rem 0 0.4rem !important;
+    margin-bottom: 13px;
+}
+.idx-card{
+    width: 100%;
+    /* height: 260px; */
+    border: none;
+    border-radius: 10px;
+}
+.idx-card:hover{
+     filter: drop-shadow(4px 4px 6px rgba(3, 12, 50, 0.888));
+     transition: 0.3s;
+}
+.idx-card-img{
+    height: 200px;
+    width: 200px;
+    border-radius: 10px;
+}
+.card-img-top{
+    width: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+    padding: 0 !important;
+}
+.card-body{
+    padding: 0 !important;
+    margin: 0 0.5rem 0.3rem 0.5rem;
+}
+.idx-card-title{
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;   
+    line-clamp: 1;            
+    -webkit-box-orient: vertical;
+}
+.idx-card-price{
+    margin: 0;
+}
+
+/* ADD VENUE Route */
+
+
+/* Show Venue Route */
+
+.show_title{
+    margin-bottom: 0;
+    display: flex;
+    justify-content: center;
+}
+.show{
+    display: flex;
+    flex-direction: column;
+    /* width: 50vh; */
+    border-radius: 10px;
+    border: none;
+}
+
+.show_img{
+    width: 100% !important;
+    height: 25rem;
+}
+.show_text{
+    margin-bottom: 0;
+}
+
+.show_link{
+    display: flex;
+    justify-content: center;
+    justify-content: space-evenly;
+}
+
+/* Buttons: */
+.form_btn{
+    border-radius: .5rem; 
+    padding: 0.5rem;
+    background-color: #0d6efd;
+    color: white;
+    border: none;
+}
+.form_btn:hover{
+  background-color: #198754;
+  color: #fff;
+}
+
+.del-btn{
+    background-color: #0d6efd;
+    border-radius: .5rem; 
+    padding: 0.5rem;
+    border: none;
+}
+.del-btn:hover{
+  background-color: red !important; 
+  color: #fff;
+}
+/* Show-Review */
+
+/* Search Route: */
+
+
+/* Handling ERR */
+.err{
+    margin-top: 16%;
+    margin-left: 19%;
+    width:60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* Flash Message */
+.flash-msg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+

@@ -1,0 +1,42 @@
+<% layout('/layouts/boilerplate.ejs') %>
+<body>
+    <div class="row">
+        <div class="col-6 offset-3">
+            <h2 class="d-flex justify-content-center mt-4"><b>Login</b></h2>
+             <h5 class="d-flex justify-content-center mt-2"> Create Account: &nbsp;<a href="/user/signup"><b style="color: #0d6efd;"> Sign up</b></a></h5>
+            <form method="post" action="/user/login" class="p-4 shadow rounded bg-light">
+                <div class="mb-3 ">
+                    <label for="username" class="form-label">Username: </label>
+                    <input class="form-control" 
+                        type="text" 
+                        name="username" 
+                        placeholder="Enter Username" 
+                        id="username" 
+                        required>
+                    <div class="invalid-feedback">Enter Valid Username</div>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password:</label>
+                    <div class="input-group form-control">
+                        <input type="password" class="form-control" id="password" name="password" required>
+                        <button type="button" class="btn btn-outline-secondary" id="togglePassword">
+                        👁️
+                        </button>
+                        <div class="invalid-feedback mb-3">Enter Valid Password</div>
+                    </div>
+                    </div>
+                <button class="btn form_btn offset-5">Login</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        const togglePassword = document.getElementById("togglePassword");
+        const passwordInput = document.getElementById("password");
+
+        togglePassword.addEventListener("click", () => {
+        const isPassword = passwordInput.type === "password";
+        passwordInput.type = isPassword ? "text" : "password";
+        togglePassword.textContent = isPassword ? "🙈" : "👁️";});
+    </script>
+
+</body>

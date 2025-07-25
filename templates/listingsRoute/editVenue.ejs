@@ -1,0 +1,49 @@
+<% layout('/layouts/boilerplate') %>
+<body> 
+    <div class="row form-edit">
+        <div class="col-6 offset-3">
+            <form method="post" action="/venue/<%=venue.id%>/edit?_method=PUT" novalidate class="needs-validation p-4 shadow rounded bg-light" enctype="multipart/form-data">
+                <br>
+                <h2>Edit Your Venue Details:</h2>
+                <div class="form_title mb-3">
+                    <label for="title" class="form-label">Venue Name: </label>
+                    <input class="form-control" type="text" name="listing[title]" value="<%=venue.title%>" id="title" required>
+                    <div class="valid-feedback">Venue Name Looks Good!</div>
+                    <div class="invalid-feedback">Enter Valid Venue Name (in Text)</div>
+                </div>
+                <div class="form_add_img mb-3">
+                    <label for="image" class="form-label">Uploaded Image: </label><br>
+                    <img src="<%= venue.image.url %>" alt="original image" style="width: 100px; height: 100px;">
+                    <div class="invalid-feedback">Image in jpg, png, jpeg only.</div>
+                </div>
+                <div class="form_add_img mb-3">
+                    <label for="image" class="form-label">Upload New Image (Optional): </label>
+                    <input class="form-control" type="file" name="listing[image]" placeholder="Image..." id="image">
+                    <div class="invalid-feedback">Image in jpg, png, jpeg only.</div>
+                </div> 
+                <div class="form-price mb-3">
+                    <label for="price" class="form-label">Price: </label>
+                    <input class="form-control" type="number" min="0" name="listing[price]" value="<%=venue.price%>" id="price" required>
+                    <div class="invalid-feedback">Enter Valid Price (in Positive Value)</div>
+                </div>
+                <div class="form_location mb-3">
+                    <label for="location" class="form-label">Location: </label>
+                    <input class="form-control" type="text" name="listing[location]" value="<%=venue.location%>" id="location" required>
+                    <div class="invalid-feedback">Enter Valid Location</div>
+                </div>
+                <div class="form_country mb-3">
+                    <label for="country" class="form-label">Country: </label>
+                    <input class="form-control" type="text" name="listing[country]" value="<%=venue.country%>" id="country" required>
+                    <div class="invalid-feedback">Enter Valid Country Name</div>
+                </div>
+                <div class="desc mb-3">
+                    <label for="description" class="form-label">Description: </label><br>
+                    <textarea class="form-control" name="listing[description]" id="description" rows="5" cols="20" required><%=venue.description%></textarea>
+                    <div class="invalid-feedback">Enter Proper Description</div>
+                </div>
+                
+                <button class="btn offset-5 mb-3 form_btn">Submit</button> 
+            </form>
+        </div>
+    </div>
+</body>

@@ -1,0 +1,56 @@
+<!-- Hero section (not shown) -->
+<!-- Browse by Category Section -->
+<section class="container py-5">
+  <h2 class="text-center fw-bold">Browse by Category</h2>
+  <h5 class="text-center text-muted mb-4">Find the perfect venue for your specific needs by browsing our venue categories</h5>
+
+  <div class="row g-4">
+    <% const categories = [
+      { title: 'Weddings', subtitle: 'Dream Wedding Venues', venues: '6+', img: 'https://res.cloudinary.com/dvhrv6r7k/image/upload/v1753400874/wedding_ezsscv.jpg' },
+      { title: 'Hotels', subtitle: 'Luxury Accommodations', venues: '6+', img: 'https://res.cloudinary.com/dvhrv6r7k/image/upload/v1753400872/hotel_cird3e.jpg' },
+      { title: 'Events', subtitle: 'Corporate & Social Events', venues: '8+', img: 'https://res.cloudinary.com/dvhrv6r7k/image/upload/v1753400871/events_ietjta.jpg' },
+      { title: 'Meetings', subtitle: 'Conference & Training', venues: '4+', img: 'https://res.cloudinary.com/dvhrv6r7k/image/upload/v1753400873/meeting_hqzi30.jpg' },
+      
+    ]; %>
+
+    <% categories.forEach(cat => { %>
+      <div class="col-md-3">
+        <a href="/listings/<%= cat.title %>">
+        <div class="card category-card text-white">
+          <img src="<%= cat.img %>" class="card-img" alt="<%= cat.title %>">
+          <div class="card-img-overlay d-flex flex-column justify-content-end">
+            <h5 class="card-title fw-bold"><%= cat.title %></h5>
+            <h6 class="card-text small"><%= cat.subtitle %></h6>
+            <p class="small"><%= cat.venues %> venues</p>
+          </div>
+        </div>
+        </a>
+      </div>
+    <% }); %>
+  </div>
+</section>
+
+<!-- Trusted by Professionals Section -->
+<section class="bg-light py-3 text-center">
+  <h3 class="fw-bold">Trusted by Event Professionals</h3>
+  <h5 class="text-muted">Join thousands of event planners who have found their perfect venues through our platform</h5>
+
+  <div class="row justify-content-center mt-4">
+    <div class="col-md-2">
+      <h2 class="text-primary fw-bolder"><%= allListings.length %>+</h2>
+      <h5 class="text-muted ">Venues Listed</h5>
+    </div>
+    <div class="col-md-2">
+      <h2 class="text-primary fw-bolder">0+</h2>
+      <h5 class="text-muted ">Events Hosted</h5>
+    </div>
+    <div class="col-md-2">
+      <h3 class="text-primary fw-bolder"><%= Math.floor(allListings.length/3) %>+</h3>
+      <h5 class="text-muted ">Cities Covered</h5>
+    </div>
+    <div class="col-md-2">
+      <h3 class="text-primary fw-bolder"><%= rating %>★</h3>
+      <h5 class="text-muted ">User Rating</h5>
+    </div>
+  </div>
+</section>

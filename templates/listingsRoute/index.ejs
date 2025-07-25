@@ -1,0 +1,24 @@
+<% layout('/layouts/boilerplate') %>
+<body>
+<h2>All Listings</h2>
+   <div class="row">
+    <% for(let list of lists) { %> 
+      <div class="col-sm-6 col-md-4 col-lg-3 cards"> <!-- Responsive grid column -->
+        <div class="card idx-card">
+          <a href="/venue/<%= list.id %>">
+            <img  src="<%=list.image.url%>" class="card-img-top idx-card-img" alt="venue photo">
+            <!-- <div class="card-img-overlay"></div> -->
+            <div class="card-body idx-card-body">
+              <p class="idx-card-title">
+                <b><%= list.title %></b><br>
+              </p> 
+              <p class="idx-card-price">
+                <b>&#8377;</b><%= list.price.toLocaleString("en-IN") %><b>/</b>24hrs
+              </p>
+            </div> 
+          </a> 
+        </div>
+      </div>
+    <% } %>
+  </div>
+</body>

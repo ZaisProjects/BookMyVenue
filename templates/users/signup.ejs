@@ -1,0 +1,80 @@
+<% layout('/layouts/boilerplate.ejs') %>
+<body>
+    <div class="row">
+        <div class="col-6 offset-3">
+            <h2 class="d-flex justify-content-center mt-4"><b>Sign Up</b></h2>
+            <form method="post" action="/user/signup" class="needs-validation p-4 shadow rounded bg-light" novalidate>
+                <div class="mb-3 ">
+                    <label for="username" class="form-label">Username: </label>
+                    <input class="form-control" 
+                        type="text" 
+                        name="username"  
+                        placeholder="Enter Username" 
+                        id="username" 
+                        required>
+                    <div class="invalid-feedback">Enter Valid Username</div>
+                </div>
+                <div class="mb-3 ">
+                    <label for="email" class="form-label">Email: </label>
+                    <input class="form-control" 
+                        type="text" 
+                        name="email" 
+                        placeholder="Enter Email" 
+                        id="email" 
+                        required>
+                    <div class="invalid-feedback">Enter Valid Email</div>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password:</label>
+                    <div class="input-group form-control">
+                        <input type="password" class="form-control" minlength="8" id="password" name="password" required>
+                        <button type="button" class="btn btn-outline-secondary" id="togglePassword">
+                        👁️
+                        </button>
+                        <div class="invalid-feedback mb-3">Enter Valid Password (min-length: 8)</div>
+                    </div>
+                    </div>
+                <button class="btn form_btn offset-5">SignUp</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        const togglePassword = document.getElementById("togglePassword");
+        const passwordInput = document.getElementById("password");
+
+        togglePassword.addEventListener("click", () => {
+        const isPassword = passwordInput.type === "password";
+        passwordInput.type = isPassword ? "text" : "password";
+        togglePassword.textContent = isPassword ? "🙈" : "👁️";});
+    </script>
+    <script>
+  function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+  }
+
+  document.querySelector("form").addEventListener("submit", function (e) {
+    const emailInput = document.querySelector("input[name='email']");
+    const email = emailInput.value;
+
+    if (!validateEmail(email)) {
+      e.preventDefault();
+      alert("Please enter a valid email address!");
+    }
+  });
+</script>
+
+<script>
+  document.querySelector("form").addEventListener("submit", function (e) {
+    const password = document.querySelector("input[name='password']").value;
+
+    if (password.length < 8) {
+      e.preventDefault();
+      alert("Password must be at least 8 characters long.");
+    }
+  });
+</script>
+
+
+
+</body>
