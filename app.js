@@ -57,7 +57,7 @@ const store = MongoStore.create({
     touchAfter : 24*3600,
 });
 
-store.on('error', ()=>{
+store.on('error', (err)=>{
     console.log("Error in mongo session store", err);
 })
 
@@ -127,8 +127,8 @@ app.use((err, req, res, next)=>{
     let{status=500, message="Something Went Wrong!"} = err;
     res.render('listingsRoute/error.ejs',{message});
 });
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 // Starting Server:
-app.listen(port, ()=>{
+app.listen(PORT, ()=>{
     console.log("server is listening on port 8080");
 });
