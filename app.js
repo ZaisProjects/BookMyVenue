@@ -1,4 +1,3 @@
-require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
@@ -11,7 +10,7 @@ const flash = require('connect-flash');
 const LocalStrategy = require('passport-local');
 
 const app = express();
-const port = 8080;
+
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, "/templates"));
 
@@ -127,7 +126,7 @@ app.use((err, req, res, next)=>{
     let{status=500, message="Something Went Wrong!"} = err;
     res.render('listingsRoute/error.ejs',{message});
 });
-
+const port = process.env.PORT || 3000;
 // Starting Server:
 app.listen(port, ()=>{
     console.log("server is listening on port 8080");
