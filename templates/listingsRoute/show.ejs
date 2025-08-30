@@ -23,9 +23,19 @@
                 </form> 
             </div>
             <% } %>
+            <% if(currentUser && !(currentUser._id.equals(venue.owner._id))) {%>
+            <div class="card-body show_link">
+                <a href="/venue/<%=venue.id %>/enquiry" class="card-link btn">
+                    <button class="btn edit_btn form_btn">Enquiry</button>
+                </a>
+                <form method="get" action="/venue/<%=venue.id %>/booking" class="card-link btn">
+                    <button class="btn del-btn btn-primary">Book Now</button>
+                </form> 
+            </div>
+            <% } %>
             <hr>
         </div>
-        <% if(currentUser){%> 
+        <% if(currentUser){%>
         <div class="review-form col-6 offset-3 mb-3">
             <h3 class=" text-center">Leave a Review:</h3>
             <form action="/venue/<%= venue._id %>/reviews" method="POST" class="review-form mb-4 needs-validation" novalidate>

@@ -118,6 +118,28 @@ app.use('/listings', listingsRouter);
 app.use('/venue', venueRouter);
 app.use('/user', userRouter);
 
+
+app.get("/cancelandrefund", (req, res) => {
+  res.render("policies/cancelandrefund");
+});
+
+app.get("/contactus", (req, res) => {
+  res.render("policies/contactus");
+});
+
+app.get("/privacy", (req, res) => {
+  res.render("policies/privacy");
+});
+
+app.get("/terms", (req, res) => {
+  res.render("policies/terms");
+});
+
+app.get("/shipping", (req, res) => {
+  res.render("policies/shipping");
+});
+
+
 // WildCard Route:
 app.all('/{*splat}', (req, res, next) => {
   next(new ExpErr(404, 'Page Not Found'));
