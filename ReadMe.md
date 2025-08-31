@@ -2,7 +2,7 @@
 
 ## Overview
 
-Book My Venue is a modern web platform where users can easily search, explore, and book venues for events like weddings, meetings, stays or parties. It combines a clean EJS (template-based) frontend with a powerful Node.js + Express.js backend, MongoDB for database RazorPay For Payment System. Users can browse venues by category, view maps, contact owners, and admins have full control over listings.
+Book My Venue is a modern web platform where users can easily search, explore, and book venues for events like weddings, meetings, stays or parties. It combines a clean EJS (template-based) frontend with a powerful Node.js + Express.js backend, MongoDB for database and RazorPay For Payment System. Users can browse venues by category, view maps, contact owners, and admins have full control over listings.
 
 ## User Preferences
 
