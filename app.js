@@ -20,8 +20,8 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, "/templates"));
 
 const mongoDB_URL = "mongodb://127.0.0.1:27017/staylist";
-// const dbUrl = mongoDB_URL;
-const dbUrl = process.env.ATLASDB_URL;
+const dbUrl = mongoDB_URL;
+// const dbUrl = process.env.ATLASDB_URL;
 
 const Listing = require('./models/listing.js'); 
 const User = require('./models/user.js');
