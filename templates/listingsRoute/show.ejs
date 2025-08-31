@@ -1,8 +1,8 @@
 <% layout('/layouts/boilerplate') %>
-<body><br>
+  <body><br>
     <h2>Venue Details: </h2><br>
-    <div class="row ms-3 g-0 show-venue">   
-        <div class="card mb-3 col-6 offset-3 show me-3  ">
+    <div class="row show-venue justify-content-center">   
+        <div class="card mb-3 col-md-9 col-lg-7 show">
             <h4 class="text-center"><b><%= venue.title %> </b> </h4> 
             <img src="<%=venue.image.url%>" class="card-img-top show_img" alt="venue photo">
             <div class="card-body show_body">
@@ -39,10 +39,10 @@
             <hr>
         </div>
         <% if(currentUser){%>
-        <div class="review-form col-6 offset-3 mb-3">
+        <div class="review-form col-md-6 mb-2 me-2">
             <h3 class=" text-center">Leave a Review:</h3>
             <form action="/venue/<%= venue._id %>/reviews" method="POST" class="review-form mb-4 needs-validation" novalidate>
-                <div class="review-form col-6 mb-3">
+                <div class="review-form mb-3">
                     <h5 class="form-label">Rating:</h5>
                     <fieldset class="starability-heartbeat">
                         <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="0" checked aria-label="No rating." />
@@ -67,45 +67,50 @@
                     <button type="submit" class="btn form_btn">Submit Review</button>   
                 </div>
             </form>
-            <hr>
         </div>
         <% } %> 
-        
-       <div class="container my-3">
-  <div class="text-center mb-4">
-    <h3 class="fw-bold">All Reviews</h3>
-    <% if (venue.reviews.length === 0) { %>
-      <h5 class="text-muted">No Reviews Yet.</h5>
-    <% } %>
-  </div>
-
-  <% for (let i = 0; i < venue.reviews.length; i += 2) { %>
-    <div class="row justify-content-center mb-4">
-      <% for (let j = i; j < i + 2 && j < venue.reviews.length; j++) { 
-          let rv = venue.reviews[j];
-      %>
-        <div class="col-md-3 mx-1">
-          <div class="card rv-card">
-            <div class="card-body rv-body">
-              <h5 class="card-title rv-title">
-                <b>@<%= rv.author.username %>:</b>
-              </h5>
-              <p class="card-text mb-1"><%= rv.comment %></p>
-              <p class="starability-result" data-rating="<%= rv.rating %>"></p> 
-              <% if (currentUser && currentUser._id.equals(rv.author._id)) { %>
-                <form method="post" action="/venue/<%= venue._id %>/review/<%= rv._id %>?_method=delete">
-                  <button class="btn btn-sm btn-primary del-btn">Delete</button>
-                </form>
-              <% } %>
-            </div>
-          </div>
+        <hr>
+      <div class="container my-2">
+        <div class="text-center mb-2">
+          <h3 class="fw-bold">---------------All Reviews---------------</h3>
+          <% if (venue.reviews.length === 0) { %>
+            <h5 class="text-muted">No Reviews Yet.</h5>
+          <% } %>
         </div>
-      <% } %>
-    </div>
-  <% } %>
-</div>
 
+        <div class="row g-3 justify-content-center">
+          <% for (let rv of venue.reviews) { %>
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="card shadow-sm rounded-3 h-100">
+                <div class="card-body d-flex flex-column">
+                  
+                  <!-- Username -->
+                  <h6 class="card-title mb-2 fw-bold">@<%= rv.author.username %>:</h6>
+                  
+                  <!-- Comment -->
+                  <p class="card-text text-wrap overflow-hidden mb-3" 
+                    style="max-height: 4.5em; line-height: 1.5em;">
+                    <%= rv.comment %>
+                  </p>
 
+                  <!-- Stars + Delete Button -->
+                  <div class="d-flex justify-content-between align-items-center mt-auto">
+                    <p class="starability-result mb-0" data-rating="<%= rv.rating %>"></p>
+                    
+                    <% if (currentUser && currentUser._id.equals(rv.author._id)) { %>
+                      <form method="post" 
+                            action="/venue/<%= venue._id %>/review/<%= rv._id %>?_method=delete">
+                        <button class="btn btn-sm btn-outline-danger">Delete</button>
+                      </form>
+                    <% } %>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          <% } %>
+        </div>
+      </div>
     </div>
-</body> 
+  </body> 
 

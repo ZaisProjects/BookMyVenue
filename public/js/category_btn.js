@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const carousel = document.querySelector('#carouselExampleCaptions');
   const buttons = document.querySelectorAll('.category-btn');
 
-  carousel.addEventListener('slid.bs.carousel', function (e) {
+  carousel.addEventListener('slide.bs.carousel', function (e) {
     const index = e.to; // index of active slide
 
     // Remove active from all buttons

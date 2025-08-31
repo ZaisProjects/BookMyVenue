@@ -42,14 +42,23 @@ h2{
 
 /* Hero Section */
 .carousel-item img {
-    height: 95vh;          
-    object-fit: cover;     
-    width: 100%;
-    filter: blur(2px);
-    transition:  ease-in !important;
+  height: 95vh;
+  width: 100%;
+  object-fit: cover;
+  filter: blur(2px);
+  transition: opacity 1s ease-out, filter 2s ease-in !important;
 }
+.carousel-item.active img {
+  opacity: 1;
+  filter: blur(0);
+}
+
 .carousel-item{
-  transition:  ease-in !important;
+  opacity: 0;
+  transition: opacity 1s ease-in-out !important;
+}
+.carousel-item.active {
+  opacity: 1;
 }
 
 .hero-search-box {
