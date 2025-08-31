@@ -1,4 +1,4 @@
-# Book My Venue - Visual Venue Searching and Booking Platform
+# Book My Venue - Online Venue Booking Platform
 
 ## Overview
 
