@@ -47,12 +47,12 @@
             <h5 class="card-title fw-bold">
               <%= b.venue ? b.venue.title : "Deleted Venue" %>
             </h5>
-            <p class="mb-1 text-muted">
-              📍 <%= b.venue ? b.venue.location : "N/A" %>
+            <p class="mb-1"><i class="fa-solid fa-location-dot" style="color: #2178ca;"></i>
+               <%= b.venue ? b.venue.location : "N/A" %>
             </p>
-            <p class="mb-1">📅 <%= new Date(b.startDate).toDateString() %> → <%= new Date(b.endDate).toDateString() %></p>
-            <p class="mb-1">⏳ Days: <b><%= b.days %></b></p>
-            <p class="mb-1">💰 Amount: <b>₹<%= b.amount %></b></p>
+            <p class="mb-1"><i class="fa-solid fa-calendar-days fa-fade" style="color: #a50d0f;"></i> <%= new Date(b.startDate).toDateString() %> → <%= new Date(b.endDate).toDateString() %></p>
+            <p class="mb-1">🔢 Days: <b><%= b.days %></b></p>
+            <p class="mb-1">💸 Amount: <b>₹<%= b.amount %></b></p>
             <p class="mb-1">🔑 Payment ID: <span class="small text-muted"><%= b.paymentId %></span></p>
             <div class="d-flex justify-content-center mt-2">
             <span class="badge <%= b.status === 'Paid' ? 'bg-success' : 'bg-danger' %> mt-2 fs-6">
