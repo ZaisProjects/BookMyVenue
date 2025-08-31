@@ -8,7 +8,11 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const flash = require('connect-flash');
+const passport = require('passport');
 const LocalStrategy = require('passport-local');
+const Razorpay = require("razorpay");
+const bodyParser = require("body-parser");
+
 
 const app = express();
 
@@ -16,20 +20,21 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, "/templates"));
 
 const mongoDB_URL = "mongodb://127.0.0.1:27017/staylist";
+// const dbUrl = mongoDB_URL;
 const dbUrl = process.env.ATLASDB_URL;
 
-
-
 const Listing = require('./models/listing.js'); 
+const User = require('./models/user.js');
+const Booking = require('./models/booking.js');
+
 const AsyncErr = require('./utils/wrapAsync.js');
 const ExpErr = require('./utils/ExpErr.js');
+
 const listingsRouter = require('./routes/listings.js');
 const venueRouter = require('./routes/venue.js');
-const User = require('./models/user.js');
-const passport = require('passport');
 const userRouter = require('./routes/user');
-
-
+const footerRouter = require('./routes/footer.js');
+const bookingRouter = require('./routes/booking.js');
 
 app.use(express.static(path.join(__dirname, "/public")));
 app.use(express.urlencoded({extended: true}));
@@ -37,6 +42,7 @@ app.use(express.json());
 app.use(methodOverride('_method'));
 app.engine('ejs',ejsMate);
 app.use(cookieParser());
+app.use(bodyParser.json());
 
 // Database Connection:
 async function main() {
@@ -76,7 +82,11 @@ const sessionOptions = {
 app.use(session(sessionOptions));
 app.use(flash());
 
-
+// Razorpay Payment instance
+const razorpay = new Razorpay({
+  key_id: process.env.PAYMENT_KEY_ID,
+  key_secret: process.env.PAYMENT_KEY_SECRET
+});
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -95,6 +105,7 @@ app.use((req,res,next)=>{
 // Home Route:
 app.get('/',AsyncErr(async(req,res)=>{
     const allListings = await Listing.find({}).populate('reviews');
+    const allBookings = await Booking.find();
 
     let totalRating = 0;
     let totalCount = 0;
@@ -106,7 +117,7 @@ app.get('/',AsyncErr(async(req,res)=>{
     let rating = totalCount === 0 ? 0 : totalRating / totalCount;
     rating = rating.toFixed(2);
 
-    res.render('listingsRoute/home.ejs',{allListings,rating});
+    res.render('listingsRoute/home.ejs',{allListings,rating,allBookings});
 }));
 
 app.get('/listings', AsyncErr(async(req,res)=>{
@@ -117,28 +128,8 @@ app.get('/listings', AsyncErr(async(req,res)=>{
 app.use('/listings', listingsRouter);
 app.use('/venue', venueRouter);
 app.use('/user', userRouter);
-
-
-app.get("/cancelandrefund", (req, res) => {
-  res.render("policies/cancelandrefund");
-});
-
-app.get("/contactus", (req, res) => {
-  res.render("policies/contactus");
-});
-
-app.get("/privacy", (req, res) => {
-  res.render("policies/privacy");
-});
-
-app.get("/terms", (req, res) => {
-  res.render("policies/terms");
-});
-
-app.get("/shipping", (req, res) => {
-  res.render("policies/shipping");
-});
-
+app.use('/',footerRouter);
+app.use('/',bookingRouter);
 
 // WildCard Route:
 app.all('/{*splat}', (req, res, next) => {

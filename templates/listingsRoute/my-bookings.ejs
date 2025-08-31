@@ -1,0 +1,35 @@
+<% layout('/layouts/boilerplate') %>
+<div class="container mt-5">
+  <h2 class="mb-4">📖 My Bookings</h2>
+
+  <% if (bookings.length === 0) { %>
+    <div class="alert alert-info text-center">No bookings yet.</div>
+  <% } else { %>
+    <table class="table table-bordered table-hover shadow-sm">
+      <thead class="table-dark">
+        <tr>
+          <th>Venue</th>
+          <th>Location</th>
+          <th>Dates</th>
+          <th>Days</th>
+          <th>Amount</th>
+          <th>Status</th>
+          <th>Payment ID</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% bookings.forEach(b => { %>
+          <tr>
+            <td><%= b.venue ? b.venue.title : "Deleted Venue" %></td>
+            <td><%= b.venue ? b.venue.location : "N/A" %></td>
+            <td><%= new Date(b.startDate).toDateString() %> → <%= new Date(b.endDate).toDateString() %></td>
+            <td><%= b.days %></td>
+            <td>₹<%= b.amount %></td>
+            <td><span class="badge <%= b.status === 'Paid' ? 'bg-success' : 'bg-danger' %>"><%= b.status %></span></td>
+            <td><%= b.paymentId %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } %>
+</div>

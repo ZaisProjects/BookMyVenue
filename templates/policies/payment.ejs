@@ -1,0 +1,79 @@
+<% layout('/layouts/boilerplate') %>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+
+      <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-body p-4">
+
+          <h2 class="text-center mb-4 mt-2">Payment: <%= name %></h2>
+
+          <!-- Booking Form -->
+          <form id="bookingForm" class="needs-validation" novalidate> 
+            
+            <!-- Booking Dates -->
+            <div class="row">
+              <div class="mb-3 col-md-6">
+                <label for="startDate" class="form-label">Booking Start Date</label>
+                <input type="date" class="form-control" id="startDate" name="startDate" required min="<%= new Date().toISOString().split('T')[0] %>" onkeydown="return false">
+
+              </div>
+              <div class="mb-3 col-md-6">
+                <label for="endDate" class="form-label">Booking End Date</label>
+                <input type="date" class="form-control" id="endDate" name="endDate" required min="<%= new Date().toISOString().split('T')[0] %>" onkeydown="return false">
+              </div>
+            </div>
+
+            <!-- User Details -->
+            <div class="mb-3">
+              <label for="customerName" class="form-label">Full Name</label>
+              <input type="text" class="form-control" id="customerName" name="customerName" placeholder="Enter your full name" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="customerEmail" class="form-label">Email</label>
+              <input type="email" class="form-control" id="customerEmail" name="customerEmail" placeholder="Enter your email" required pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$">
+            </div>
+
+            <div class="mb-3">
+              <label for="customerPhone" class="form-label">Phone Number</label>
+              <input type="tel" class="form-control" id="customerPhone" name="customerPhone" placeholder="Enter your phone number" required pattern="^[6-9]\d{9}$" maxlength="10">
+            </div>
+
+            <div class="mb-3">
+              <label for="customerAddress" class="form-label">Address</label>
+              <textarea class="form-control" id="customerAddress" name="customerAddress" rows="2" placeholder="Enter your address" required></textarea>
+            </div>
+
+            <!-- Total Preview -->
+            <!-- <div class="text-center mt-3">
+              <h5 id="totalAmountPreview" class="text-primary fw-bold">📅 Select dates to see total</h5>
+            </div> -->
+
+            <!-- Pay Button -->
+            <div class="text-center mt-4">
+                 <!-- prevents form submission -->
+              <button
+                type="button"  
+                id="payBtn"
+                class="btn btn-primary px-4 py-2"
+                data-price="<%= price %>"
+                data-venueid="<%= venueId %>"
+                data-venuename="<%= name %>"
+                data-razorpaykey="<%= razorpayKey %>"
+              >
+                Pay ₹<%= price %> / day
+              </button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Razorpay Checkout -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="/js/payment.js"></script>

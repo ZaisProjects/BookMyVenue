@@ -6,7 +6,10 @@
             <h4 class="text-center"><b><%= venue.title %> </b> </h4> 
             <img src="<%=venue.image.url%>" class="card-img-top show_img" alt="venue photo">
             <div class="card-body show_body">
-                <h5 class="card-text show_text d-flex justify-content-center mb-0"><b>Owned By:&nbsp; </b> <%= venue.owner.username%><h5>
+                <h5 class="card-text show_text d-flex justify-content-center mb-0 mt-1">
+                  <b>Owned By:&nbsp; </b> <%= venue.owner.username%>
+                  <% if(currentUser && currentUser._id.equals(venue.owner._id)) {%>(Your Venue)<%}%>
+                  <h5>
                 <h5 class="text-muted mb-0 d-flex justify-content-end">Rating: <%= averageRating %>★</h5>
                 <h5 class="card-text show_text mt-0"><b>&#8377;</b><%= venue.price.toLocaleString("en-IN") %><b>/</b>24hrs</h5>
                 <h5 class="card-text show_text"><i class="fa-solid fa-location-dot"></i> <%= venue.location%>, <%= venue.country %></h5>
@@ -23,13 +26,13 @@
                 </form> 
             </div>
             <% } %>
-            <% if(currentUser && !(currentUser._id.equals(venue.owner._id))) {%>
+            <% if(!currentUser || !(currentUser._id.equals(venue.owner._id ))) {%>
             <div class="card-body show_link">
                 <a href="/venue/<%=venue.id %>/enquiry" class="card-link btn">
-                    <button class="btn edit_btn form_btn">Enquiry</button>
+                    <button class="btn btn-primary">Enquiry</button>
                 </a>
                 <form method="get" action="/venue/<%=venue.id %>/booking" class="card-link btn">
-                    <button class="btn del-btn btn-primary">Book Now</button>
+                    <button class="btn btn-primary">Book Now</button>
                 </form> 
             </div>
             <% } %>

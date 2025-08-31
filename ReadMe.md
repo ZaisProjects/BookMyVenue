@@ -2,7 +2,7 @@
 
 ## Overview
 
-Book My Venue is a modern web platform where users can easily search, explore, and book venues for events like weddings, meetings, stays or parties. It combines a clean EJS (template-based) frontend with a powerful Node.js + Express.js backend and MongoDB for database. Users can browse venues by category, view maps, contact owners, and admins have full control over listings.
+Book My Venue is a modern web platform where users can easily search, explore, and book venues for events like weddings, meetings, stays or parties. It combines a clean EJS (template-based) frontend with a powerful Node.js + Express.js backend, MongoDB for database RazorPay For Payment System. Users can browse venues by category, view maps, contact owners, and admins have full control over listings.
 
 ## User Preferences
 
@@ -39,6 +39,7 @@ Preferred communication style: Simple, everyday language.
 - **Listings**: Core entity with categories (events, hotels, meetings, weddings), pricing, amenities, and location data.
 - **Users**: Includes regular users and a special owner and super admin with elevated privileges
 - **Reviews**: Users Submitted reviews on venue listed
+- **Bookings**: User Booked Venue Details
 
 
 ### Frontend Components
@@ -48,12 +49,14 @@ Preferred communication style: Simple, everyday language.
 - **Venue Listings**: Card-based layout with thumbnails, price, and location info
 - **Detail Page**: Venue-specific page with description, map, and inquiry form
 - **Admin Panel**: Admin access to view/edit/delete all listings
+-**Payment**: RazorPay Payment System Integration for booking venue
 
 ### Backend Services
 
 - **Venue Management**: Full CRUD operations (create, read, update, delete) with category-based filtering.
 - **Admin Authorization**: Super admin verification to access privileged routes
 - **File Upload Handling**: Upload venue images using Multer and optionally store them on Cloudinary
+- **Payment Authorization**: Robust Payment Handling and Authorization via RazorPay
 
 
 ## Data Flow
@@ -111,6 +114,7 @@ Preferred communication style: Simple, everyday language.
 Book My Venue is a smart, clean, and practical venue booking platform built using Node.js, Express, MongoDB, and EJS. It supports:
 
 - User friendly UI
+- Payment System Authorization
 - Powerful venue search  
 - Category browsing  
 - Super admin control  
