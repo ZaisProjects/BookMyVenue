@@ -77,8 +77,9 @@ document.addEventListener("DOMContentLoaded", function () {
         "key": razorpayKey,
         "amount": order.amount,
         "currency": order.currency,
-        "name": venueName,
-        "description": "Venue Booking Payment",
+        "name": "Book My Venue",
+        "description": venueName + " Booking Payment",
+        "image":"https://res.cloudinary.com/dvhrv6r7k/image/upload/v1753400864/venueCircle_logo_qn7yb2.png",
         "order_id": order.id,
         "prefill": {
           "name": customerName,

@@ -51,12 +51,17 @@ router.post("/enquiry/:id", isLoggedIn, (req, res) => {
 
 // Route to create Razorpay order
 router.post("/create-order", async (req, res) => {
-  const { amount } = req.body;
+  const { amount,venueName } = req.body;
 
   const options = {
     amount: amount * 100, // amount in paise
     currency: "INR",
-    receipt: "receipt_" + Date.now()
+    receipt: `BMV_${venueName}_${Date.now()}`,
+    notes: {
+      website: "Book My Venue",
+      venue: venueName,
+      support_email: "support@bookmyvenue.com"
+    }
   };
 
   try {
